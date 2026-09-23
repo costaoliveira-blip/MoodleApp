@@ -4,6 +4,115 @@
     --list-item-max-width: 600px;
 }
 
+.ipe-login {
+    --ipe-ensino: #efb329;
+    --ipe-pesquisa: #9d489e;
+    min-height: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 3.5rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.ipe-login__brand {
+    margin: 0 auto 4.5rem;
+    width: min(100%, 23rem);
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.ipe-login__sites {
+    display: grid;
+    gap: 1.55rem;
+}
+
+.ipe-login__card {
+    --accent: var(--ipe-ensino);
+    border-radius: 1.65rem;
+    padding: 1.7rem 1.8rem 1.9rem;
+    background: var(--ion-background-color, #fff);
+    box-shadow: 0 0.6rem 1.8rem rgb(39 44 48 / 10%);
+
+    &.pesquisa {
+        --accent: var(--ipe-pesquisa);
+    }
+
+    h1 {
+        color: #40535c;
+        font-size: 1.85rem;
+        font-weight: 700;
+        line-height: 1.05;
+        margin: 0;
+    }
+
+    p {
+        color: #7d8487;
+        font-size: 1.06rem;
+        line-height: 1.45;
+        min-height: 3.1rem;
+        margin: 1.35rem 0 1.65rem;
+    }
+
+    ion-button {
+        --background: var(--accent);
+        --background-activated: var(--accent);
+        --border-radius: 0.35rem;
+        --box-shadow: none;
+        font-size: 1.1rem;
+        font-weight: 700;
+        height: 4.3rem;
+        margin: 0 3.1rem;
+        text-transform: none;
+    }
+}
+
+.ipe-login__heading {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+}
+
+.ipe-login__mark {
+    width: 1.5rem;
+    height: 3.45rem;
+    flex: 0 0 auto;
+    background: var(--accent);
+    border-radius: 100% 0 0 100% / 50% 0 0 50%;
+}
+
+.ipe-login__footer {
+    margin-top: auto;
+    padding-top: 5.5rem;
+
+    img {
+        display: block;
+        width: min(100%, 13rem);
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 360px) {
+    .ipe-login {
+        padding-top: 2rem;
+    }
+
+    .ipe-login__brand { margin-bottom: 2.5rem; }
+
+    .ipe-login__card {
+        padding: 1.3rem;
+
+        ion-button {
+            margin: 0 1.6rem;
+        }
+    }
+}
+
 .core-login-site-connect {
     margin-top: 1.4rem;
 }

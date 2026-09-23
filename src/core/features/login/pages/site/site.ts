@@ -80,6 +80,17 @@ export default class CoreLoginSitePage implements OnInit {
     siteFinderSettings!: CoreLoginSiteFinderSettings;
     appName = CoreConstants.CONFIG.appname;
 
+    readonly ipeSites = {
+        ensino: {
+            description: 'Atividades de ensino da educação básica, graduação e pós-graduação da UFG.',
+            accent: 'ensino',
+        },
+        pesquisa: {
+            description: 'Atividades de pesquisa e extensão da UFG.',
+            accent: 'pesquisa',
+        },
+    };
+
     protected formBuilder = inject(FormBuilder);
 
     /**
@@ -614,6 +625,16 @@ export default class CoreLoginSitePage implements OnInit {
      */
     displaySiteUrl(siteUrl: string): boolean {
         return CoreSitesFactory.makeUnauthenticatedSite(siteUrl).shouldDisplayInformativeLinks();
+    }
+
+    /**
+     * Return presentation data for the Moodle Ipê entrance cards.
+     *
+     * @param site Site being rendered.
+     * @returns Card presentation data.
+     */
+    getIpeSiteDetails(site: CoreLoginSiteInfo): { description: string; accent: string } {
+        return site.url.includes('pesquisaextensao') ? this.ipeSites.pesquisa : this.ipeSites.ensino;
     }
 
 }

@@ -53,7 +53,7 @@ import { CoreSharedModule } from '@/core/shared.module';
 @Component({
     selector: 'page-core-login-credentials',
     templateUrl: 'credentials.html',
-    styleUrl: '../../login.scss',
+    styleUrls: ['credentials.scss', '../../login.scss'],
     imports: [
         CoreSharedModule,
         CoreSiteLogoComponent,
@@ -79,6 +79,7 @@ export default class CoreLoginCredentialsPage implements OnInit, OnDestroy {
     siteCheckError = '';
     displaySiteUrl = false;
     showLoginForm = true;
+    siteBrand?: 'ensino' | 'pesquisa';
 
     protected siteCheck?: CoreSiteCheckResponse;
     protected eventThrown = false;
@@ -110,6 +111,7 @@ export default class CoreLoginCredentialsPage implements OnInit, OnDestroy {
             }
 
             this.site = CoreSitesFactory.makeUnauthenticatedSite(siteUrl, this.siteConfig);
+            this.siteBrand = this.getSiteBrand(siteUrl);
             this.urlToOpen = CoreNavigator.getRouteParam('urlToOpen');
             this.supportConfig = this.siteConfig && new CoreUserGuestSupportConfig(this.site, this.siteConfig);
             this.displaySiteUrl = this.site.shouldDisplayInformativeLinks();
@@ -159,6 +161,22 @@ export default class CoreLoginCredentialsPage implements OnInit, OnDestroy {
         this.alwaysShowLoginFormObserver = CoreEvents.on(ALWAYS_SHOW_LOGIN_FORM_CHANGED, async () => {
             this.showLoginForm = await CoreLoginHelper.shouldShowLoginForm(this.siteConfig);
         });
+    }
+
+    /**
+     * Get the Moodle Ipê visual identity for a known site.
+     *
+     * @param siteUrl Site URL.
+     * @returns Brand identifier, if the site is a Moodle Ipê site.
+     */
+    protected getSiteBrand(siteUrl: string): 'ensino' | 'pesquisa' | undefined {
+        if (siteUrl.includes('ensino.ead.ufg.br')) {
+            return 'ensino';
+        }
+
+        if (siteUrl.includes('pesquisaextensao.ead.ufg.br')) {
+            return 'pesquisa';
+        }
     }
 
     /**

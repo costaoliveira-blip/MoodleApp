@@ -5,7 +5,7 @@
         </ion-buttons>
 
         <ion-title>
-            <h1>{{ 'core.login.connecttomoodle' | translate }}</h1>
+            <h1>Moodle Ipê</h1>
         </ion-title>
 
         <ion-buttons slot="end">
@@ -16,6 +16,32 @@
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+    @if (fixedSites?.length === 2) {
+        <main class="ipe-login" aria-label="Seleção do ambiente Moodle Ipê">
+            <div class="ipe-login__brand" aria-label="Moodle Ipê">
+                <img src="assets/img/moodle-ipe-logo.svg" alt="Moodle Ipê">
+            </div>
+
+            <section class="ipe-login__sites" aria-label="Ambientes disponíveis">
+                @for (site of fixedSites; track site.url) {
+                    <article class="ipe-login__card" [class]="getIpeSiteDetails(site).accent">
+                        <div class="ipe-login__heading">
+                            <span class="ipe-login__mark" aria-hidden="true"></span>
+                            <h1>{{ site.name }}</h1>
+                        </div>
+                        <p>{{ getIpeSiteDetails(site).description }}</p>
+                        <ion-button expand="block" (click)="connect(site.url, $event)">
+                            Acessar
+                        </ion-button>
+                    </article>
+                }
+            </section>
+
+            <footer class="ipe-login__footer" aria-label="CIAR e Universidade Federal de Goiás">
+                <img src="assets/img/logo-ciar-e-ufg.svg" alt="CIAR e Universidade Federal de Goiás">
+            </footer>
+        </main>
+    } @else {
     <div class="list-item-limited-width">
         <div class="ion-text-center ion-padding ion-margin-bottom core-login-site-logo" [class.hidden]="hasSites || enteredSiteUrl">
             <img src="assets/img/login_logo.png" class="avatar-full login-logo" [alt]="'core.login.logoof' | translate: { $a: appName }">
@@ -130,6 +156,7 @@
             {{ 'core.needhelp' | translate }}
         </ion-button>
     </div>
+    }
 </ion-content>
 
 <!-- Template site selector. -->

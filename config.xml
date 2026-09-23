@@ -50,7 +50,7 @@
     <preference name="WKWebViewOnly" value="true" />
     <preference name="WKFullScreenEnabled" value="true" />
     <preference name="AndroidXEnabled" value="true" />
-    <preference name="GradlePluginGoogleServicesEnabled" value="true" />
+    <preference name="GradlePluginGoogleServicesEnabled" value="false" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#FFFFFF" />
     <preference name="NavigationBarBackgroundColor" value="#FFFFFF" />

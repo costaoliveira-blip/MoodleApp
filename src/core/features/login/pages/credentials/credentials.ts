@@ -247,13 +247,18 @@ export default class CoreLoginCredentialsPage implements OnInit, OnDestroy {
             !!this.supportConfig?.canContactSupport(),
             this.showForgottenPassword,
         );
-        this.authInstructions = this.siteConfig.authinstructions ||
+
+        let authInstructions = this.siteConfig.authinstructions ||
             (this.canSignup ? Translate.instant('core.login.loginsteps') : '');
 
-        if (!this.eventThrown && !this.viewLeft) {
-            this.eventThrown = true;
-            CoreEvents.trigger(CoreEvents.LOGIN_SITE_CHECKED, { config: this.siteConfig });
+        if (authInstructions) {
+            authInstructions = authInstructions.replace(
+                /<div>\s*<br\s*\/?>\s*<p>\s*<a[^>]*href=["']https:\/\/ead\.ufg\.br["'][^>]*>\s*Voltar para o início\s*<\/a>\s*<\/p>\s*<\/div>/i,
+                '',
+            );
         }
+
+        this.authInstructions = authInstructions;
     }
 
     /**

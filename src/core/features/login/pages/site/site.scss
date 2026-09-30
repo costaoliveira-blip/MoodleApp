@@ -4,16 +4,26 @@
     --list-item-max-width: 600px;
 }
 
+/* =========================================================
+ * Moodle Ipê - Tela de seleção de ambiente
+ * ========================================================= */
+
 .ipe-login {
     --ipe-ensino: #efb329;
     --ipe-pesquisa: #9d489e;
+
     min-height: 100%;
     max-width: 450px;
     margin: 0 auto;
     padding: 3.5rem 1rem 2rem;
+
     display: flex;
     flex-direction: column;
 }
+
+/* =========================================================
+ * Logo Moodle Ipê
+ * ========================================================= */
 
 .ipe-login__brand {
     margin: 0 auto 4.5rem;
@@ -26,6 +36,10 @@
     }
 }
 
+/* =========================================================
+ * Cards dos ambientes
+ * ========================================================= */
+
 .ipe-login__sites {
     display: grid;
     gap: 1.55rem;
@@ -33,28 +47,25 @@
 
 .ipe-login__card {
     --accent: var(--ipe-ensino);
+
     border-radius: 1.65rem;
     padding: 1.7rem 1.8rem 1.9rem;
+
     background: var(--ion-background-color, #fff);
+
     box-shadow: 0 0.6rem 1.8rem rgb(39 44 48 / 10%);
 
     &.pesquisa {
         --accent: var(--ipe-pesquisa);
     }
 
-    h1 {
-        color: #40535c;
-        font-size: 1.85rem;
-        font-weight: 700;
-        line-height: 1.05;
-        margin: 0;
-    }
-
     p {
         color: #7d8487;
         font-size: 1.06rem;
         line-height: 1.45;
+
         min-height: 3.1rem;
+
         margin: 1.35rem 0 1.65rem;
     }
 
@@ -63,27 +74,53 @@
         --background-activated: var(--accent);
         --border-radius: 0.35rem;
         --box-shadow: none;
+
         font-size: 1.1rem;
         font-weight: 700;
+
         height: 4.3rem;
+
         margin: 0 3.1rem;
+
         text-transform: none;
     }
 }
 
+/* =========================================================
+ * Logo / título do ambiente
+ *
+ * Aqui usamos os SVGs reais:
+ *
+ * - moodle-ensino.svg
+ * - moodle-pesquisa-extensao.svg
+ *
+ * Não usamos mais border-radius para desenhar a meia-lua.
+ * ========================================================= */
+
 .ipe-login__heading {
     display: flex;
+
     align-items: center;
-    gap: 1.15rem;
+    justify-content: center;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
 }
 
-.ipe-login__mark {
-    width: 1.5rem;
+.ipe-login__site-logo {
+    display: block;
+
+    width: auto;
     height: 3.45rem;
-    flex: 0 0 auto;
-    background: var(--accent);
-    border-radius: 100% 0 0 100% / 50% 0 0 50%;
+
+    max-width: 100%;
 }
+
+/* =========================================================
+ * Footer
+ * ========================================================= */
 
 .ipe-login__footer {
     margin-top: auto;
@@ -91,18 +128,27 @@
 
     img {
         display: block;
+
         width: min(100%, 13rem);
         height: auto;
+
         margin: 0 auto;
     }
 }
 
+/* =========================================================
+ * Responsividade
+ * ========================================================= */
+
 @media (max-width: 360px) {
+
     .ipe-login {
         padding-top: 2rem;
     }
 
-    .ipe-login__brand { margin-bottom: 2.5rem; }
+    .ipe-login__brand {
+        margin-bottom: 2.5rem;
+    }
 
     .ipe-login__card {
         padding: 1.3rem;
@@ -111,7 +157,15 @@
             margin: 0 1.6rem;
         }
     }
+
+    .ipe-login__site-logo {
+        height: 3.2rem;
+    }
 }
+
+/* =========================================================
+ * Código original do Moodle
+ * ========================================================= */
 
 .core-login-site-connect {
     margin-top: 1.4rem;
@@ -120,38 +174,48 @@
 .item ion-thumbnail {
     min-width: 50px;
     min-height: 50px;
+
     width: 50px;
     height: 50px;
+
     border-radius: 20%;
+
     box-shadow: 0 0 4px var(--gray-200);
+
     text-align: center;
+
     overflow: hidden;
 
     img {
         max-height: 50px;
         max-width: fit-content;
+
         width: auto;
         height: auto;
+
         margin: 0 auto;
         margin-left: 50%;
+
         object-fit: cover;
         object-position: 50% 50%;
-        @include transform(translate3d(-50%,0,0));
+
+        @include transform(translate3d(-50%, 0, 0));
     }
+
     ion-icon {
         margin: 0 auto;
+
         font-size: #{dynamic-font(35px)};
+
         height: 50px;
     }
 }
 
 :host-context([dir="rtl"]) {
-
     .item ion-thumbnail img {
         margin-left: 0;
         margin-right: 50%;
     }
-
 }
 
 .core-login-site-logo,
@@ -159,38 +223,53 @@
 .core-login-site-list-found {
     visibility: visible;
     opacity: 1;
+
     transition: all 0.7s ease-in-out;
+
     max-height: 9999px;
 
     &.hidden {
         opacity: 0;
+
         visibility: hidden;
+
         margin-top: 0;
         margin-bottom: 0;
+
         padding: 0;
+
         max-height: 0;
-        display: block !important; /** Avoid breaking the animation */
+
+        display: block !important;
     }
 }
 
 .core-login-site-list-found.dimmed {
     pointer-events: none;
+
     position: relative;
 }
 
 .core-login-site-list-loading {
     position: absolute;
+
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+
     width: 100%;
     height: 100%;
+
     display: flex;
+
     align-content: center;
     align-items: center;
+
     background-color: rgb(255 255 255 / 50%);
+
     z-index: 1;
+
     ion-spinner {
         margin: 0 auto;
     }
@@ -198,18 +277,22 @@
 
 .core-login-site-nolist-loading {
     margin-top: 16px;
+
     text-align: center;
 }
 
 .item.core-login-site-list-title {
-    ion-label, ion-label h2.item-heading {
+    ion-label,
+    ion-label h2.item-heading {
         margin-top: 0;
     }
 }
 
 @include media-breakpoint-up(md) {
+
     ion-content .core-login-site-logo {
         margin-top: 20%;
+
         &.hidden {
             margin-top: 0;
         }

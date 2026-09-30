@@ -82,11 +82,11 @@ export default class CoreLoginSitePage implements OnInit {
 
     readonly ipeSites = {
         ensino: {
-            description: 'Atividades de ensino da educação básica, graduação e pós-graduação da UFG.',
+            description: 'Ambiente destinado ás atividades de ensino da educação básica, graduação e pós-graduação da UFG.',
             accent: 'ensino',
         },
         pesquisa: {
-            description: 'Atividades de pesquisa e extensão da UFG.',
+            description: 'Ambiente destinado ás atividades de pesquisa e extensão da UFG.',
             accent: 'pesquisa',
         },
     };

@@ -9,38 +9,109 @@
         </ion-title>
 
         <ion-buttons slot="end">
-            <ion-button fill="clear" (click)="openSettings()" [ariaLabel]="'core.settings.appsettings' | translate">
-                <ion-icon slot="icon-only" name="fas-gear" aria-hidden="true" />
+            <ion-button
+                fill="clear"
+                (click)="openSettings()"
+                [ariaLabel]="'core.settings.appsettings' | translate"
+            >
+                <ion-icon
+                    slot="icon-only"
+                    name="fas-gear"
+                    aria-hidden="true"
+                />
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+
 <ion-content class="ion-padding">
+
     @if (fixedSites?.length === 2) {
-        <main class="ipe-login" aria-label="Seleção do ambiente Moodle Ipê">
-            <div class="ipe-login__brand" aria-label="Moodle Ipê">
-                <img src="assets/img/moodle-ipe-logo.svg" alt="Moodle Ipê">
-            </div>
 
-            <section class="ipe-login__sites" aria-label="Ambientes disponíveis">
-                @for (site of fixedSites; track site.url) {
-                    <article class="ipe-login__card" [class]="getIpeSiteDetails(site).accent">
-                        <div class="ipe-login__heading">
-                            <span class="ipe-login__mark" aria-hidden="true"></span>
-                            <h1>{{ site.name }}</h1>
-                        </div>
-                        <p>{{ getIpeSiteDetails(site).description }}</p>
-                        <ion-button expand="block" (click)="connect(site.url, $event)">
-                            Acessar
-                        </ion-button>
-                    </article>
-                }
-            </section>
+    <main
+        class="ipe-login"
+        aria-label="Seleção do ambiente Moodle Ipê"
+    >
 
-            <footer class="ipe-login__footer" aria-label="CIAR e Universidade Federal de Goiás">
-                <img src="assets/img/logo-ciar-e-ufg.svg" alt="CIAR e Universidade Federal de Goiás">
+        <!-- Logo Moodle Ipê -->
+        <div
+            class="ipe-login__brand"
+            aria-label="Moodle Ipê"
+        >
+            <img
+                src="assets/img/moodle-ipe-logo.svg"
+                alt="Moodle Ipê"
+            >
+        </div>
+
+        <!-- Ambientes -->
+        <section
+            class="ipe-login__sites"
+            aria-label="Ambientes disponíveis"
+        >
+
+            @for (site of fixedSites; track site.url) {
+
+            <article
+                class="ipe-login__card"
+                [class]="getIpeSiteDetails(site).accent"
+            >
+
+                <!-- Logo do ambiente -->
+                <h2 class="ipe-login__heading">
+
+                    @if (site.name === 'Ensino') {
+
+                    <img
+                        class="ipe-login__site-logo"
+                        src="assets/img/moodle-ensino.svg"
+                        alt="Ensino"
+                    />
+
+                    } @else {
+
+                    <img
+                        class="ipe-login__site-logo"
+                        src="assets/img/moodle-pesquisa-extensao.svg"
+                        alt="Pesquisa e Extensão"
+                    />
+
+                    }
+
+                </h2>
+
+                <!-- Descrição -->
+                <p>
+                    {{ getIpeSiteDetails(site).description }}
+                </p>
+
+                <!-- Botão -->
+                <ion-button
+                    expand="block"
+                    (click)="connect(site.url, $event)"
+                >
+                    Acessar
+                </ion-button>
+
+            </article>
+
+            }
+
+        </section>
+
+        <!-- Logos CIAR + UFG -->
+        <footer
+            class="ipe-login__footer"
+            aria-label="CIAR e Universidade Federal de Goiás"
+        >
+            <img
+                src="assets/img/logo-ciar-e-ufg.svg"
+                alt="CIAR e Universidade Federal de Goiás"
+            />
             </footer>
+
         </main>
+
     } @else {
     <div class="list-item-limited-width">
         <div class="ion-text-center ion-padding ion-margin-bottom core-login-site-logo" [class.hidden]="hasSites || enteredSiteUrl">

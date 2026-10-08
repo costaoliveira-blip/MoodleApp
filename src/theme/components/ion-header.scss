@@ -72,6 +72,7 @@ ion-header.header-md {
 
         h1 core-site-logo {
             --core-site-logo-max-height: var(--core-mainpage-headerlogo-maxheight);
+            --core-site-logo-brand-justify: flex-start;
         }
 
         h1, h2, .subheading {

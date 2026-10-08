@@ -19,3 +19,16 @@ img.core-logo {
     font: var(--core-site-logo-sitename-font);
     margin-bottom: var(--core-site-logo-sitename-margin-bottom, 0px);
 }
+
+.core-logo-brand {
+    display: flex;
+    align-items: center;
+    justify-content: var(--core-site-logo-brand-justify, center);
+
+    img.core-logo-brand-img {
+        max-height: var(--core-site-logo-max-height, 32px);
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
+    }
+}

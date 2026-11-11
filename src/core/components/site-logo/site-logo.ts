@@ -67,8 +67,20 @@ export class CoreSiteLogoComponent implements OnInit, OnDestroy {
 
     readonly siteName = signal('');
 
-    readonly showSiteName = computed(() =>
-        this.logoType() !== CoreSiteLogoType.TOP || !this.showLogoEffective());
+    readonly brandLogo = computed<{ src: string; alt: string } | undefined>(() => {
+        const siteUrl = this.siteEffective().getURL();
+
+           if (siteUrl.includes('ensino.ead.ufg.br')) {
+               return { src: 'assets/img/moodle-ensino.svg', alt: 'Moodle Ensino' };
+           }
+
+           if (siteUrl.includes('pesquisaextensao.ead.ufg.br')) {
+               return { src: 'assets/img/moodle-pesquisa-extensao.svg', alt: 'Moodle Pesquisa e Extensão' };
+           }
+        });
+
+        readonly showSiteName = computed(() =>
+            !this.brandLogo() && (this.logoType() !== CoreSiteLogoType.TOP || !this.showLogoEffective()));
 
     readonly siteId = computed(() => {
         const site = this.siteEffective();
